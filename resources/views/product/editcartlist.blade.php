@@ -867,11 +867,11 @@
                                             <input name="name" class="form-check-input me-1 fs-1 w-75"
                                                 type="text" value="{{ $product->name }}" required>
                                         </li>
+                                        <img src="{{ asset($product->img_path) }}" alt="">
                                         <li class="list-group-item" style="height: 150px;">
-                                            <img src="{{ asset($product->img_path) }}" alt="">
-                                            <input name="image" class="form-check-input me-1 fs-1 w-75"
-                                                type="file" value="" style="height: 100px;">
                                             <label class="form-check-label fs-1" for="secondCheckbox">產品圖片</label>
+                                            <input name="image" class="form-check-input me-1 fs-1 w-75"
+                                                type="file" value="" style="height: 100px;" accept="image/*">
                                         </li>
                                         <li class="list-group-item">
                                             <label class="form-check-label fs-1" for="thirdCheckbox">產品價格</label>
@@ -880,12 +880,12 @@
                                         </li>
                                         <li class="list-group-item">
                                             <label class="form-check-label fs-1" for="fourthCheckbox">顯示狀態</label>
-                                            <label for="huey" class="fs-1">
+                                            <label  class="fs-1">
                                                 <input type="radio" id="appear" name="status" value="1"
                                                     @if ($product->status === 1) checked @endif />
                                                 要顯示
                                             </label>
-                                            <label for="huey" class="fs-1">
+                                            <label  class="fs-1">
                                                 <input type="radio" id="no-appear" name="status" value="2"
                                                     @if ($product->status === 1) checked @endif />
                                                 不顯示

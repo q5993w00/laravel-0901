@@ -40,7 +40,9 @@ class ProductController extends Controller
         //新產品資料儲存
 
         //方法一
+
         //查看請求的資料(form表單裡input)
+        //這段是做圖片儲存的動作
         $path = Storage::putFile('public/upload', $request->file('image'));
 
         //方法二
@@ -82,10 +84,16 @@ class ProductController extends Controller
     {
 
         //驗證
-
-        //產品更新功能
-        // dd($request->all());
+        $path = null;
         $product = Product::find($id);
+        //如果有上傳圖片
+        if ($request->file('image')){
+            $path = Storage::putFile('public/upload', $request->file('image'));
+            //這段是做圖片儲存的動作
+
+        }
+        // dd($request->all());
+        //產品更新功能
         $product->update([
             'name' => $request->name,
             'price' => $request->price,
