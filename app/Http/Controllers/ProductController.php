@@ -35,7 +35,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //驗證進來的資料是否合規龜龜龜
+        //驗證進來的資料是否合規龜龜龜規
 
         //新產品資料儲存
 
