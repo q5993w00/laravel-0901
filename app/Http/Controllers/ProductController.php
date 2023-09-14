@@ -74,7 +74,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         //產品編輯頁(3)
-        return view('product.editcartlist',compact('product'));
+        return view('product.editcartlist', compact('product'));
     }
 
     /**
@@ -84,22 +84,34 @@ class ProductController extends Controller
     {
 
         //驗證
-        $path = null;
         $product = Product::find($id);
-        //如果有上傳圖片
-        if ($request->file('image')){
+       // 如果有上傳圖片
+        if ($request->file('image')) {
+            // 上傳新圖片並獲取新圖片的路徑
             $path = Storage::putFile('public/upload', $request->file('image'));
-            //這段是做圖片儲存的動作
+            // 刪除舊圖片
+            Storage::delete(str_replace('storage', 'public', $product->img_path));
 
+            // 更新產品信息，包括名稱、價格、狀態、描述和新圖片路徑
+            $product->update([
+                'name' => $request->name,
+                'price' => $request->price,
+                'status' => $request->status,
+                'desc' => $request->desc,
+                'img_path' => str_replace('public', 'storage', $path),
+            ]);
+        } else {
+     // 如果沒有上傳新圖片，僅更新產品信息（名稱、價格、狀態、描述）
+            // dd($request->all());
+            $product->update([
+                'name' => $request->name,
+                'price' => $request->price,
+                'status' => $request->status,
+                'desc' => $request->desc,
+            ]);
         }
-        // dd($request->all());
-        //產品更新功能
-        $product->update([
-            'name' => $request->name,
-            'price' => $request->price,
-            'status' => $request->status,
-            'desc' => $request->desc,
-        ]);
+
+         // 重定向回產品列表頁
         return redirect(route('product.index'));
     }
 
