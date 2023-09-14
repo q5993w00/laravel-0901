@@ -21,15 +21,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/product/list', [ProductController::class, 'index'])->name('product.index');
+Route::prefix('/product')->group(function () {
 
-Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
-Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
+Route::get('/list', [ProductController::class, 'index'])->name('product.index');
 
-Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
-Route::post('/product/update/{id}', [ProductController::class, 'update'])->name('product.update');
+Route::get('/create', [ProductController::class, 'create'])->name('product.create');
+Route::post('/store', [ProductController::class, 'store'])->name('product.store');
 
+Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+Route::post('/update/{id}', [ProductController::class, 'update'])->name('product.update');
 
+Route::post('/delete/{id}', [ProductController::class, 'destroy'])->name('product.delete');
 
+});
 
 

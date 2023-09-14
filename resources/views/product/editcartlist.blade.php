@@ -881,13 +881,11 @@
                                         <li class="list-group-item">
                                             <label class="form-check-label fs-1" for="fourthCheckbox">顯示狀態</label>
                                             <label  class="fs-1">
-                                                <input type="radio" id="appear" name="status" value="1"
-                                                    @if ($product->status === 1) checked @endif />
+                                                <input type="radio" id="appear" name="status" value="1" @if ($product->status === 1) checked @endif />
                                                 要顯示
                                             </label>
                                             <label  class="fs-1">
-                                                <input type="radio" id="no-appear" name="status" value="2"
-                                                    @if ($product->status === 1) checked @endif />
+                                                <input type="radio" id="no-appear" name="status" value="2" @if ($product->status === 1) checked @endif />
                                                 不顯示
                                             </label>
 

@@ -932,8 +932,14 @@
                                                 <td>${{ $product->price }}</td>
                                                 <td>
                                                     <div class="dropdown">
-                                                        <div><a class="dropdown-item" href="#">
-                                                            <i class="fa-regular fa-trash-can me-3"></i>刪除</a>
+                                                        <div>
+                                                            <form action=" {{ route('product.delete', ['id' => $product->id]) }}" method="post">
+                                                            @csrf
+                                                                <button class="dropdown-item" type="submit">
+                                                            <i class="fa-regular fa-trash-can me-3"></i>
+                                                            刪除
+                                                        </button>
+                                                    </form>
                                                         </div>
                                                         <div>
                                                             <a class="dropdown-item" href="{{ route('product.edit', ['id' => $product->id]) }}">
